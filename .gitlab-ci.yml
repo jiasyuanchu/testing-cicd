@@ -4,5 +4,8 @@ stages:
 deploy_to_github:
   stage: deploy
   script:
-    - git remote add github https://github.com/jiasyuanchu/testing-cicd.git
+    - |
+      if ! git remote | grep -q "github"; then
+        git remote add github https://github.com/jiasyuanchu/testing-cicd.git
+      fi
     - git push github main
