@@ -1,2 +1,2 @@
 lint:
-	golangci-lint run --timeout 10m ./cmd/... ./internal/...
+	golangci-lint run

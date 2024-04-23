@@ -1,6 +1,9 @@
 stages:
  - verify
 
+before_script:
+  - pwd
+  - ls -al
 
 lint:
   stage: verify
