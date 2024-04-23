@@ -1,11 +1,16 @@
 stages:
-  - deploy
+ - verify
 
-deploy_to_github:
-  stage: deploy
+
+lint:
+  stage: verify
+  image: docker.io/golangci/golangci-lint:v1.56.2
+  allow_failure: false
+  tags:
+    - shared-runners-no-root
+  only:
+    refs:
+      - merge_requests
+      - main
   script:
-    - |
-      if ! git remote | grep -q "github"; then
-        git remote add github https://github.com/jiasyuanchu/testing-cicd.git
-      fi
-    - git push github main
+    - make lint
